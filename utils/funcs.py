@@ -362,6 +362,8 @@ def plot_survival_ecotyper(
     loc = None,
     show_p = False,
     timeline="months",
+    xlim = None,
+    ylim = None,
 ):
     col = f"{sig_name}_group"
     # edge case: groupby col results in only one group for the given arm
@@ -420,4 +422,9 @@ def plot_survival_ecotyper(
                                    event_observed_B=es[1])
             ax.text(0.5, 0.9, f"P = {results.p_value:.2e}", 
                     ha="center", va="center", transform=ax.transAxes)
+
+    if xlim is not None:
+        plt.xlim(*xlim)
+    if ylim is not None:
+        plt.ylim(*ylim)
     plt.tight_layout()                                                      
